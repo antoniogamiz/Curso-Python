@@ -1,0 +1,649 @@
+\documentclass{beamer}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\uselanguage{Spanish}
+\languagepath{Spanish}
+\usepackage{listings} 
+
+\usepackage{color}
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+\title[Python 3.6]{Introducción a Python 3.6}
+\author{Antonio Gámiz Delgado}
+
+\usetheme{Copenhagen}
+\usecolortheme{default}
+
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\section{Instalación}
+
+\begin{frame}{Instalación}
+	En Linux, Pyhton viene normalmente instalado en la distribución base que uséis(Ubuntu, Fedora, Guadalinex, etc, ya que es el lenguaje con el que se escriben muchas de las aplicaciones base que llevan. \\
+	En este tutorial usaremos $Python3$.$6$
+	\begin{block}{Para ver la versión de Python que usáis:}
+	python --version \\
+	sudo apt-get install python3.6
+	\end{block}
+\end{frame}
+
+\section{Primeros pasos}
+\subsection{Intérprete}
+\begin{frame}
+La instalación de $Python$ sólo nos proporciona un intérprete que permite ejecutar los programas escritos en él, por lo que necesitamos un editor:\\
+\pause 
+\begin{figure}
+\includegraphics[scale=0.3]{atom.jpg}
+\includegraphics[scale=0.4]{emacs.jpg}
+\includegraphics[scale=0.3]{spider.jpg}
+\end{figure}
+\end{frame}
+\subsection{Programar en un fichero a parte}
+\begin{frame}[fragile]
+\begin{block}{Creamos un fichero: miprograma.py}
+Para ejecutar un programa en $python$ directamente desde la línea de comandos y sin necesidad de llamar al intérprete añadimos lo siguiente:
+\end{block}
+\begin{lstlisting}[language=Python]
+#!/usr/bin/python3.6
+\end{lstlisting}
+\pause
+\begin{block}{}
+Además de crearlo, debemos darle permisos de ejecución: \\
+chmod +x miprograma.py
+\end{block}
+
+\end{frame}
+\subsection{UTF-8}
+\begin{frame}[fragile]
+\begin{block}{UTF-8}
+Desde $python3$, las cadenas por defecto son $Unicode(UTF-8)$, pero si usáis una versión anterior a la 3, tendréis que añadir la siguiente línea a vuestro archivo.py:
+\end{block}
+\begin{lstlisting}[language=Python]
+#!/usr/bin/python
+#-*- coding: utf-8 -*-
+\end{lstlisting}
+\end{frame}
+\subsection{Hola, mundo}
+\begin{frame}[fragile]
+\begin{block}{Nuestro primer programa}
+Con la función $print$ crearemos nuestro primer programa:
+\end{block}
+\begin{lstlisting}[language=Python]
+#!/usr/bin/python
+#-*- coding: utf-8 -*-
+
+print("Hola, mundo")
+\end{lstlisting}
+\pause
+\begin{exampleblock}{Algún parámetro de $print$}
+$end$="delimitador"
+\end{exampleblock}
+\begin{lstlisting}[language=Python]
+print("Hola, mundo",end="")
+\end{lstlisting}
+\end{frame}
+
+\section{Variables}
+\subsection{Definición de variables}
+\begin{frame}[fragile]
+\begin{block}{¿Cómo se definen?}
+En $python$ las variables se definen de la siguiente forma: \\
+nombre\_de\_la\_variable=valor
+\end{block}
+\pause
+\begin{exampleblock}{}
+Algunos ejemplos:
+\end{exampleblock}
+\begin{lstlisting}[language=Python]
+t=2.5
+nombre="Esto es una frase"
+caracter='a'
+meses=['Enero','Febrero']
+random=[1,'patata',30234,'a']
+masrandom=[1,'patata',30234,'a',['Enero','Febrero']]
+a = b = 69
+x, y, z = "hola", 10, ["teclado", "patatas"]
+\end{lstlisting}
+\end{frame}
+\subsection{Reglas de nomenclatura}
+\begin{frame}{Reglas de nomenclatura}
+\begin{block}{Letras permitidas}
+Las letras permitidas para nombrar variables son las del 'alfabeto inglés', es decir, ni la 'ñ' ni la 'ç' están permitidas.
+\end{block}
+\begin{block}{}
+$Python$ distingue entre minúsculas y mayúsculas.
+\end{block} \pause
+\begin{block}{}
+El nombre de una variable puede empezar por una letra o por '\_', pero no por un número. Y puede seguir con más letras, números o '\_'.
+\end{block}
+\begin{block}{}
+Las palabras reservadas del lenguaje están prohibidas(if, else, while, etc).
+\end{block}
+\end{frame}
+\subsection{Tipos de variables}
+\begin{frame}[fragile]
+\begin{exampleblock}{}
+Algunos tipos son:
+\end{exampleblock}
+\begin{lstlisting}[language=Python]
+x=2.5
+nombre="Esto es una frase"
+caracter='a'
+meses=['Enero','Febrero']
+random=[1,'patata',30234,'a']
+diccionario={"a":"a", "b":"c"}
+\end{lstlisting}
+\pause
+\begin{exampleblock}{}
+$type(var)$:Devuelve el tipo de $var$.
+\end{exampleblock}
+
+\begin{lstlisting}[language=Python]
+x=1
+y='a'
+z=[a,b,c]
+
+print(type(x)," ",type(y)," ",type(z))
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Conversión de variables}
+\begin{block}{}
+$Python$ es un lenguaje fuertemente tipado, es decir, no se puede tratar a una variable como si fuera de un  tipo distinto al que tiene.
+\end{block}
+\pause
+\begin{block}{Solución: consersiones}
+type(variable)
+\end{block}
+\begin{lstlisting}[language=Python]
+x=1
+y='a'
+
+str(x)
+int(a)
+
+print(type(x)," ",type(y))
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Introduciendo variables por teclado}
+\begin{block}{Función input}
+En Python3.x: input()
+En Python2.x: raw\_input() input()
+\end{block}
+\begin{lstlisting}[language=Python]
+
+#!/usr/bin/python3.6
+
+x1=int(input("numero 1: "))
+x2=int(input("numero 2: "))
+
+print("La suma de los dos es: ", x1+x2)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Operadores aritméticos}
+\begin{lstlisting}[language=Python]
+#!/usr/bin/python3.6
+
+x + y	#suma
+x - y	#resta
+x * y	#multiplicacion
+x / y	#division
+x // y	#division entera
+x % y	#modulo
+x ** y	#exponente
+
+
+
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Listas(I).}
+\begin{lstlisting}[language=Python]
+#!/usr/bin/python3.6
+lista = [1,2,3,4,5]
+lista2 = [1,2,3,[4,5,6]]
+
+print(lista[2])
+print(lista[-1])
+print(lista[14])
+print(lista2[3][0])
+
+\end{lstlisting} \pause
+\begin{block}{Error}
+Traceback (most recent call last):
+File "nombres.py", line 26, in <module>
+print(nombres[-5])
+IndexError: list index out of range
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Listas (II).}
+\begin{lstlisting}[language=Python]
+#!/usr/bin/python3.6
+lista = [1,2,3,4,5]
+lista2=list(lista) #Importante!!
+lista[1]=3 	#Modificamos lista.
+lista.append("otroElemento") #Aniadimos un nuevo elemento a 'lista'. 
+lista.insert(1, "otroElemnto2") #Aniadimos un nuevo elemento en la posicion 1.
+lista.pop() 	#Quita el ultimo elemento de 'lista' y lo retorna.
+\end{lstlisting} \pause
+\begin{block}{Pila}
+Intuitivamente, se puede ver que con append() y pop() se puede hacer una 'pila' fácilmente.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Diccionarios.}
+\begin{lstlisting}[language=Python]
+#!/usr/bin/python3.6
+
+mydict = {"altura" : "media", "habilidad" : "alta", "salario" : 999}
+
+#Python2.x
+if mydict.has_key('altura'):
+print 'Llave encontrada'
+
+#Python3.x
+if 'altura' in mydict:
+print("Llave encontrada")
+\end{lstlisting}
+\end{frame}
+
+\section{Estructuras de control básicas.}
+
+\subsection{Operadores lógicos}
+\begin{frame}[fragile]
+\frametitle{Operadores lógicos}
+\begin{lstlisting}[language=Python]
+x < y
+x > y
+x == y
+x >= y
+x <= y
+x != y 
+x in lista
+x not in lista
+x is y #id(x)==id(y)
+x is not y
+exp1 and exp2
+exp1 or exp2
+exp1 not exp2
+\end{lstlisting}
+\end{frame}
+\subsection{Estructura If}
+\begin{frame}[fragile]
+\frametitle{Estructura if}
+\begin{lstlisting}[language=Python]
+#!/usr/bin/python3.6
+
+if expresion_a_evaluar:
+	instruccion1
+	...
+else:
+	instruccion2
+	...
+
+if expresion_a_evaluar_1:
+	ejecutar_si_cierto_1
+elif expresion_a_evaluar_2:
+	ejecutar_si_cierto_2
+elif expresion_a_evaluar_3:
+	ejecutar_si_cierto_3
+else:
+	ejecutar_si_ninguna
+
+\end{lstlisting}
+\end{frame}
+\subsection{Estructura While}
+\begin{frame}[fragile]
+\frametitle{Estructura While}
+\begin{lstlisting}[language=Python]
+#!/usr/bin/python3.6
+
+while condicion:
+	instruccion
+
+while condicion:
+	instruccion
+else:
+	instruccion_fuera_del_bucle
+
+\end{lstlisting}
+\end{frame}
+\subsection{Estructura For}
+\begin{frame}[fragile]
+\frametitle{Estructura For}
+\begin{block}{For}
+El bucle 'for' sirve para recorrer secuencialmente los elementos de una lista.
+\end{block}
+\begin{lstlisting}[language=Python]
+#!/usr/bin/python3.6
+for variable in lista:
+	instrucciones
+else:
+	instrucciones_si_llega_al_final_del_bucle
+
+#Ejemplo:
+Huerto = ["zanahoria", "col", "lechuga", "col"]
+for Planta in Huerto:
+	if Planta != "col":
+		print(Planta)
+else:
+	print("Odio las coles")
+
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Sentencias 'break' y 'continue'}
+\begin{block}{Break}
+'break' sale completamente del bucle sin ejecutar ninguna instrucción más(ni 'else's)
+\end{block}
+\begin{block}{Continue}
+'continue' es más suave que 'break', se salta la iteración en la que se activa, pero luego sigue ejecutando el bucle.
+\end{block}
+\begin{lstlisting}[language=Python]
+#!/usr/bin/python3.6
+
+x= 0
+while x < 10:
+	if x == 5:
+		break (o 'continue')
+	print(x)
+	x = x + 1
+
+
+\end{lstlisting}
+\end{frame}
+
+\section{Funciones y programación dirigida a objetos}
+\subsection{Gestión de errores}
+\begin{frame}[fragile]
+\begin{block}{Errores varios}
+Cosas como la división por cero o el tratamiento de tipos de datos incompatibles (sumar cadenas, por ejemplo) provocarán errores en tiempo de ejecución que abortaran el programa.
+\end{block} \pause
+\begin{exampleblock}{¿Cómo solucionarlo? 'try'}
+\end{exampleblock}
+\begin{lstlisting}[language=Python]
+try:
+	instruccionesaejecutar
+except:
+	aqui_entra_por_cualquier_error
+try:
+	instrucciones_a_ejecutar
+except TipoDeError1:
+	...
+except TipoDeErrorN:
+	...
+else:
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Gestión de errores (ejemplo)}
+\begin{lstlisting}[language=Python]
+try:
+	resultado = dividendo/divisor
+except ZeroDivisionError:
+	if divisor == 0:
+	print("No puedes dividir por cero.")
+except ValueError:
+	if divisor == 0:
+	print("0 no es valido")
+else:
+	print("La divison resulta: ", resultado)
+\end{lstlisting}
+\end{frame}
+
+\subsection{Funciones}
+
+\begin{frame}[fragile]
+\frametitle{Funciones}
+\begin{lstlisting}[language=Python]
+def nombre_funcion(arg1, arg2, ..., argN):
+	cuerpo
+	return algo (si hubiera que devolver algo)
+\end{lstlisting}
+\begin{block}{return}
+Aunque la función no devuelva ningún valor, siempre devolverá 'None'(como el 'null' de Java).
+\end{block}
+\begin{lstlisting}[language=Python]
+def cuadrado(x):
+	return x**2
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Funciones (II): Argumentos por defecto.}
+\begin{lstlisting}[language=Python]
+#!/usr/bin/python3.6
+def mostrar(mensaje="argumento por defecto"):
+	print(mensaje)
+
+mostrar()
+mostrar("otro mensaje")
+\end{lstlisting}\pause
+\begin{block}{¡Importante!}
+Los argumentos opcionales sólo se pueden ir al final ya que se acomodan de izquierda a derecha.
+\end{block}
+\end{frame}
+
+\subsection{Clases e instancias (PDO o OOP)}
+\begin{frame}
+\frametitle{Programación dirigida a objetos}
+\begin{block}{¿Qué es una clase?}
+Una clase es un tipo de dato definido por el usuario, que podemos ejemplificar (instanciar) para obtener instancias, es decir, objetos de ese tipo.
+\end{block} \pause
+\begin{block}{Características}
+\begin{enumerate}
+\item Podemos llamar a un objeto de clase como si fuera una función.
+\item Una clase tiene atributos nominales a los que podemos hacer referencia.
+\item Los atributos de la clase vinvulados a funciones se conocen como 'métodos de la clase'.
+\item Una clase puede heredar de otras clases.
+\end{enumerate}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Creando nuestras primeras clases.}
+\begin{lstlisting}[language=Python]
+#!/usr/bin/python3.6
+
+class nombre_clase():
+	atributos
+	metodos
+
+class ejemplo():
+	x=25
+	def metodo_mostrar(self):
+		print("El valor de x es: ",x)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Constructor de la clase (Ej.1)}
+\begin{lstlisting}[language=Python]
+#!/usr/bin/python3.6
+class Acuario():
+	#El metodo __init__ se ejecuta automaticamente al llamar a la clase
+	def __init__(self, litros, tipo, num):
+		self.capacidad = litros
+		self.tipo = tipo
+		self.total_peces = num
+	def meter_pez(self):
+		self.total_peces = self.total_peces + 1
+	def sacar_pez(self):
+		if ( self.total_peces > 0):
+			self.total_peces = self.total_peces + 1
+			
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Constructor de la clase (Ej.1)}
+\begin{lstlisting}[language=Python]
+
+Mipecera= Acuario(100,"tropical",5)
+
+print ("La pecera tiene", Mipecera.capacidad, "litros")
+print ("Hay", Mipecera.total_peces, "peces")
+print ("Aniadimos un pez")
+
+Mipecera.meter_pez()
+
+print ("Ahora hay", Mipecera.total_peces, "peces")
+
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{Constructor de la clase (Ej.2)}
+\begin{lstlisting}[language=Python]
+#!/usr/bin/pyhton3
+
+class Complejo:
+	def __init__(self, parteReal, parteImaginaria):
+		"""Constructor de la clase Complejo"""
+		self.r = parteReal
+		self.i = parteImaginaria
+	def getReal(self):
+		return self.r
+	def getImag(self):
+		return self.i
+
+num = Complejo(3.0, -4.5)
+print ("Parte Real ", num.getReal())
+print ("Parte Imaginaria ", num.getImag())
+
+\end{lstlisting}
+\end{frame}
+
+\subsection{Herencia (PyRencia)}
+
+\begin{frame}[fragile]
+\frametitle{Herencia, (PyRencia)}
+\begin{block}{¿Qué es la herencia?}
+En POO, la herencia es, después de la agregación o composición, el mecanismo
+más utilizado para alcanzar algunos de los objetivos más preciados en el
+desarrollo de software como lo son la reutilización y la extensibilidad. A
+través de ella los diseñadores pueden crear nuevas clases partiendo de una
+clase o de una jerarquía de clases preexistente (ya comprobadas y
+verificadas) evitando con ello el rediseño, la modificación y verificación
+de la parte ya implementada.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Ejemplo de herencia}
+\begin{lstlisting}[language=Python]
+#!/usr/bin/pyhton3
+class Mamifero():
+	def __init__(self):
+		descripcion= "Los mamiferos son interesantes"
+	def tiene_pelo(self):
+		return "si"
+	# Al poner Mamifero en el parentesis, le decimos que herede de esa calse
+class Gato(Mamifero):
+	def __init__(self):
+		descrpcion= "Los gatos molan"
+	def maulla(self):
+		return "si"
+# Mascota es una instancia de la clase Gato
+Mascota = Gato()
+# Estamos llamando a un metodo de la clase mamifero
+print (Mascota.tiene_pelo())
+\end{lstlisting}
+
+\end{frame}
+
+
+\section{Módulos}
+
+\begin{frame}
+\frametitle{Módulos (I)}
+\begin{block}{¿Qué es un módulo?}
+Un módulo es una parte de algo. Algo es modular si es posible separarlo en partes o piezas, como los LEGO.
+\end{block}
+\pause
+\begin{exampleblock}{¿Cómo son los módulos en python?}
+ En Python, un módulo es una pequeña pieza de un gran programa. Sencillamente un módulo es un fichero dentro de tu disco duro. En caso de Python es un fichero con extension $.py$.
+\end{exampleblock}
+\pause
+\begin{block}{¿Cómo usarlos?}
+Sentencia $import$, $import$ $as$, $from$ $import$
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Módulos (II)}
+\begin{block}{Módulos ya hechos de Python}
+Python tiene instalada por defecto una gran cantidad de módulos que amplían su uso. Además, por supuesto, es posible instalar nuevos módulos.
+\end{block}
+\begin{block}{¿Cómo saber que módulos tenemos instalados?}
+\begin{enumerate}
+\item Iniciamos una sesión interactiva ($python$ o $python3$)
+\item Escribimos $help()$ $modules$
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Módulos (III)}
+\begin{block}{Información de un módulo específico.}
+\begin{enumerate}
+\item Iniciamos una sesión interactica ($python3$)
+\item import módulo
+\item help(módulo)
+\item help(módulo.funcion)
+\end{enumerate}
+\end{block}
+\begin{block}{Ver las funciones de un módulo}
+\begin{enumerate}
+\item Iniciamos una sesión interactica ($python3$)
+\item import módulo
+\item dir(módulo)
+\end{enumerate}
+\end{block}
+\end{frame}
+
+\end{document}
